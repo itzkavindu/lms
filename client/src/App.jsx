@@ -20,6 +20,7 @@ import ViewBook from "./components/books/ViewBooks";
 // import AdminEditBook from "./components/books/AdminEditBook";
 import Cart from "./components/cart/Cart";
 import OrderSuccess from "./components/cart/OrderSuccess";
+import CertificateRequestForm from "./pages/student/certificateRequestForm"
 
 const App = () => {
   const isEducatorRoute = useMatch("/educator/*");
@@ -31,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/course-list" element={<CoursesList />} />
+        <Route path="/certificateRequestForm" element={<CertificateRequestForm />} />
         <Route path="/course-list/:input" element={<CoursesList />} />
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/my-enrollments" element={<MyEnrollment />} />

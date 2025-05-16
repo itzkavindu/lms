@@ -32,6 +32,11 @@ const Sidebar = () => {
                     <FaUsers className="text-gray-700" />
                     <a href="/addbooks" className="text-gray-800 font-semibold text-base">Add books</a>
                 </li>
+                <li className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    <FaList className="text-gray-700" />
+                    <a href="/certificate-requests" className="text-gray-800 font-semibold text-base">Certification Requests</a>
+                </li>
+                
             </ul>
         </aside>
     );

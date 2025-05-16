@@ -61,6 +61,41 @@ const MyEnrollment = () => {
     return daysLeft > 0 ? daysLeft : 0; // Return 0 if course duration has expired
   };
 
+  const handleRequestCertificate = async (courseId, totalLectures, completedLectures) => {
+  const progressPercentage = Math.round((completedLectures / totalLectures) * 100);
+  const progressData = {
+    enrollment_id: courseId,
+    lessons_completed: completedLectures,
+    progress_percentage: progressPercentage,
+    current_status: progressPercentage === 100 ? 'Completed' : 'In Progress',
+  };
+
+  try {
+    const token = await getToken();
+    await axios.post(
+      `${backendUrl}/api/progress/save`, // END_POINTS.SAVE_PROGRESS
+      progressData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    navigate("/certificateRequestForm", {
+      state: {
+        courseId,
+        userId: userData._id, // from context
+      },
+    });
+  } catch (error) {
+    console.error("Error saving progress:", error);
+    toast.error("Failed to request certificate.");
+  }
+};
+
+  
+
   useEffect(() => {
     if (userData) {
       fetchUserEnrolledCourses();
@@ -139,6 +174,13 @@ const MyEnrollment = () => {
                       ? "Completed"
                       : "On Going"}
                   </button>
+                   <button className="px-3 sm:px-5 py-1.5 sm:py-2 bg-green-600 text-white rounded"
+                           onClick={() => handleRequestCertificate(
+                            course._id,
+                            progressArray[index]?.lectureCompleted || 0,
+                            progressArray[index]?.totalLectures || 1
+                          )}>Request Certificate 
+                          </button> 
                 </td>
               </tr>
             ))}

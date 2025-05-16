@@ -15,6 +15,8 @@ import EduactorDashboard from './pages/EduactorDashboard'
 import AddCourse from './pages/AddCourse'
 import MyCourse from './pages/MyCourse'
 import StudentsEnrolled from './pages/StudentsEnrolled'
+import CertificateRequests from './pages/CertificateRequests'; 
+
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
 export const currency = 'LKR'
@@ -49,6 +51,7 @@ const App = () => {
                 <Route path='/add-course' element={<AddCourse token={token} />} />
                 <Route path='/my-course' element={<MyCourse token={token} />} />
                 <Route path='/students-enrolled' element={<StudentsEnrolled token={token} />} />
+                <Route path='/certificate-requests' element={<CertificateRequests token={token} />} />
               </Routes>
             </div>
           </div>

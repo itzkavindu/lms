@@ -11,8 +11,10 @@ import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRouter.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
-import progressRoutes from "./routes/progressRoutes.js";
 import certificateRequestRoutes from "./routes/certificateRequestRoutes.js";
+import progressRoutes from "./routes/progressRoutes.js";
+
+
 
 //initialize express
 const app = express();
@@ -35,8 +37,9 @@ app.use("/api/admin", express.json(), adminRouter);
 app.use("/stripe", express.raw({type: 'application/json'}), stripeWebhooks);
 app.use('/api/books', express.json(), bookRoutes);
 app.use('/api/orders', express.json(), orderRouter);
-app.use("/api/progress",express.json(), progressRoutes);
-app.use("/api/certificate_data", certificateRequestRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api/certificates", certificateRequestRoutes);
+
 
 //port
 const PORT = process.env.PORT || 5000;
